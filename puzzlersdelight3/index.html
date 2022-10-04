@@ -53,7 +53,7 @@ window.addEventListener('load', updateFrameSize);
   const answerInput = answerForm.querySelector('input[name=answer]');
   let responsePanel;
   let progressAnswers = new Set();
-  let baseredir = "bit.ly/IWMPD3_"
+  let baseredir = "https://bit.ly/IWMPD3_"
   let redir = ""
 
   answerForm.addEventListener('submit', (event) => {
@@ -68,7 +68,7 @@ window.addEventListener('load', updateFrameSize);
         answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
       } 
     if (answerHash === correctAnswerHash) {
-        responsePanel.innerHTML = `<span class="correct">${displayAnswer} is correct. Redirecting...</span>`;
+        responsePanel.innerHTML = `<span class="correct">${displayAnswer} is correct.<br> Redirecting...</span>`;
         redir = baseredir.concat(answer);
         window.location.href = redir;
     } else {
