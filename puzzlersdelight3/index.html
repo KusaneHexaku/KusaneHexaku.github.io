@@ -12,7 +12,8 @@
 <body>
   <main>   
 <div>
-            <div class="lead text-primary">
+            <div>
+                <br><br>[../dir/terminal/PD3.bat]<br>
 =================================================<br>
 ---[15]---- ---[9]- --[7]-----<br>
 ----[8] ---[16]-<br>
@@ -21,7 +22,7 @@
 ----[5]-[10]-<br>
 ---[13]-- ---[12]-[4]-<br>
 -[2]----[1]-<br>
-=================================================<br>       
+=================================================<br><br><br>       
             </div>
     
    <main id="main-content" class="answer">
@@ -68,11 +69,11 @@ window.addEventListener('load', updateFrameSize);
         answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
       } 
     if (answerHash === correctAnswerHash) {
-        responsePanel.innerHTML = `<span class="correct">${displayAnswer} is correct.<br> Redirecting...</span>`;
+        responsePanel.innerHTML = `<span class="correct">$<br>{displayAnswer} is correct.<br><br> Redirecting...</span>`;
         redir = baseredir.concat(answer);
         window.location.href = redir;
     } else {
-        responsePanel.innerHTML = `<span class="incorrect">${displayAnswer} is incorrect.</span>`;
+        responsePanel.innerHTML = `<span class="incorrect">$<br>{displayAnswer} is incorrect.</span>`;
     }
 
 
@@ -101,11 +102,4 @@ window.addEventListener('load', updateFrameSize);
     
     
 </body>
-
-<div class="container body-content ">
-        <hr />
-        <footer>
-            <p>Kusane Hexaku, 2020-<script>document.write(new Date().getFullYear())</script>, there's no hint here.</p>
-        </footer>
-    </div>
 </html>
