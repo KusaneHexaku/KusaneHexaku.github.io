@@ -35,9 +35,9 @@ if (answerForm) {
         node = document.createElement('div')
         node.setAttribute('id', 'solved-panel')
         if (answerHash === correctAnswerHash) {
-          node.innerHTML = "<p class=\x22text-success\x22><h3>Solved!</h3><\p><p class=\x22lead text-success \x22>The answer was <b>" + right_answer + "</b>.</p><br><br>"
+          node.innerHTML = "<p class=\x22text-success\x22>Correct.</p><br><br>"
         } else {
-          node.innerHTML = "<p class=\x22text-danger\x22><h3>Incorrect!</h3><br><br></p>"
+          node.innerHTML = "<p class=\x22text-danger\x22>Incorrect.<br><br></p>"
         }
 
         // Inject it
@@ -48,6 +48,7 @@ if (answerForm) {
 
     });
     event.preventDefault();
+    return false;
   });
 
   async function hashPuzzleAnswer(answer) {
