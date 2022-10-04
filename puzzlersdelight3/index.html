@@ -14,11 +14,21 @@
 
     <script id="check_answer">
  
-     const answerForm = document.querySelector('.answer form');
-if (answerForm) {
+        function updateFrameSize() {
+  if (frameElement) {
+    frameElement.style.height = document.body.offsetHeight + 'px';
+  }
+}
+updateFrameSize();
+window.addEventListener('load', updateFrameSize);
+  
+    const answerForm = document.querySelector('.answer form');
+    if (answerForm) {
   
   // Javascript version of the answer checker.
   const answerInput = answerForm.querySelector('input[name=answer]');
+  let responsePanel;
+  let progressAnswers = new Set();
 
   answerForm.addEventListener('submit', (event) => {
     const correctAnswerHash = '3d024b97564b4c33d5eb946cda2fc55441869a95b865b2d091c8e881b53c363e';
@@ -26,30 +36,21 @@ if (answerForm) {
     const answer = normalizePuzzleAnswer(answerInput.value);
     const displayAnswer = normalizePuzzleAnswerDisplay(answerInput.value);
     hashPuzzleAnswer(answer).then((answerHash) => {
-      
-        // Remove solved panel if it exists
-        if (document.contains(document.getElementById('solved-panel'))) {
-          document.getElementById("solved-panel").remove();
-        }
+    if (!responsePanel) {
+        responsePanel = document.createElement('div');
+        responsePanel.classList.add('response');
+        answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
+      } 
+    if (answerHash === correctAnswerHash) {
+        responsePanel.innerHTML = `<span class="correct">${displayAnswer} is correct.</span>`;
+    } else {
+        responsePanel.innerHTML = `<span class="incorrect">${displayAnswer} is incorrect.</span>`;
+    }
 
-        // Create new solved panel
-        node = document.createElement('div')
-        node.setAttribute('id', 'solved-panel')
-        if (answerHash === correctAnswerHash) {
-          node.innerHTML = "<p class=\x22text-success\x22>Correct.</p><br><br>"
-        } else {
-          node.innerHTML = "<p class=\x22text-danger\x22>Incorrect.<br><br></p>"
-        }
 
-        // Inject it
-        form.parentNode.insertBefore(node, form)
-
-        // Return false to prevent GET request from executing
-        return false;
-
+     updateFrameSize();
     });
     event.preventDefault();
-    return false;
   });
 
   async function hashPuzzleAnswer(answer) {
