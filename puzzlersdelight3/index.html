@@ -1,15 +1,100 @@
-<pre><output>webpack: Compiled successfully.
-webpack: Compiling...
-Hash: 33d8c38093d5e8261eac
-Version: webpack 3.11.0
-Time: 1337ms
-                               Asset       Size  Chunks                    Chunk Names
-                          project.js    12.3 MB       0  [emitted]  [big]  project
-                        dashboard.js    6.36 MB       1  [emitted]  [big]  dashboard
-                         organize.js    5.29 MB       2  [emitted]  [big]  organize
-                          proPens.js    4.92 MB       3  [emitted]  [big]  proPens
-0.81c79b4db476a98d272f.hot-update.js    87.4 kB       0  [emitted]         project
-1.81c79b4db476a98d272f.hot-update.js    7.94 kB       1  [emitted]         dashboard
-81c79b4db476a98d272f.hot-update.json   52 bytes          [emitted]
-                       manifest.json  272 bytes          [emitted]
-[./app/javascript/common/components/Overlay.js] ./app/javascript/common/components/Overlay.js 2.42 kB {0} {1} [built]</output></pre>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>-----</title>
+    <link href="main.css" rel="stylesheet" />
+</head>
+
+<body>
+  <main>
+
+    <script id="check_answer">
+ 
+     const answerForm = document.querySelector('.answer form');
+if (answerForm) {
+  
+  // Javascript version of the answer checker.
+  const answerInput = answerForm.querySelector('input[name=answer]');
+
+  answerForm.addEventListener('submit', (event) => {
+    const correctAnswerHash = '3d024b97564b4c33d5eb946cda2fc55441869a95b865b2d091c8e881b53c363e';
+
+    const answer = normalizePuzzleAnswer(answerInput.value);
+    const displayAnswer = normalizePuzzleAnswerDisplay(answerInput.value);
+    hashPuzzleAnswer(answer).then((answerHash) => {
+      
+        // Remove solved panel if it exists
+        if (document.contains(document.getElementById('solved-panel'))) {
+          document.getElementById("solved-panel").remove();
+        }
+
+        // Create new solved panel
+        node = document.createElement('div')
+        node.setAttribute('id', 'solved-panel')
+        if (answerHash === correctAnswerHash) {
+          node.innerHTML = "<p class=\x22text-success\x22><h3>Solved!</h3><\p><p class=\x22lead text-success \x22>The answer was <b>" + right_answer + "</b>.</p><br><br>"
+        } else {
+          node.innerHTML = "<p class=\x22text-danger\x22><h3>Incorrect!</h3><br><br></p>"
+        }
+
+        // Inject it
+        form.parentNode.insertBefore(node, form)
+
+        // Return false to prevent GET request from executing
+        return false;
+
+    });
+    event.preventDefault();
+  });
+
+  async function hashPuzzleAnswer(answer) {
+    const encodedAnswer = new TextEncoder().encode(answer);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encodedAnswer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function normalizePuzzleAnswer(answer) {
+    return answer.toUpperCase().replace(/[^A-Z0-9]/g, '')
+  }
+  function normalizePuzzleAnswerDisplay(answer) {
+    return answer.toUpperCase().replace(/[^'" \-A-Z0-9]/g, '')
+  }
+  
+} 
+      
+  </script>
+
+    
+<div>
+        <form class="call-in-answer-panel">
+
+            <div class="lead text-primary">
+             Enter your guess:
+            </div>
+                              <br>
+            <div class="lead text-primary">
+                <input type="text" class="form-control" name="answer" maxlength="500" required="" id="id_answer">
+
+            </div>
+            <div class="lead text-primary">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+
+    </form>
+<br><br><br>
+
+    </div>
+                                 </main>
+</body>
+
+<div class="container body-content ">
+        <hr />
+        <footer>
+            <p>Kusane Hexaku, 2020-<script>document.write(new Date().getFullYear())</script>, there's no hint here.</p>
+        </footer>
+    </div>
+</html>
