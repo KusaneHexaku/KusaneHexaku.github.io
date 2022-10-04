@@ -53,6 +53,8 @@ window.addEventListener('load', updateFrameSize);
   const answerInput = answerForm.querySelector('input[name=answer]');
   let responsePanel;
   let progressAnswers = new Set();
+  let baseredir = "bit.ly/IWMPD3_"
+  let redir = ""
 
   answerForm.addEventListener('submit', (event) => {
     const correctAnswerHash = '3d024b97564b4c33d5eb946cda2fc55441869a95b865b2d091c8e881b53c363e';
@@ -66,7 +68,9 @@ window.addEventListener('load', updateFrameSize);
         answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
       } 
     if (answerHash === correctAnswerHash) {
-        responsePanel.innerHTML = `<span class="correct">${displayAnswer} is correct.</span>`;
+        responsePanel.innerHTML = `<span class="correct">${displayAnswer} is correct. Redirecting...</span>`;
+        redir = baseredir.concat(answer);
+        window.location.href = redir;
     } else {
         responsePanel.innerHTML = `<span class="incorrect">${displayAnswer} is incorrect.</span>`;
     }
