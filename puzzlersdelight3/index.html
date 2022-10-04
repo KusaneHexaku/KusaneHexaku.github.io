@@ -69,11 +69,11 @@ window.addEventListener('load', updateFrameSize);
         answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
       } 
     if (answerHash === correctAnswerHash) {
-        responsePanel.innerHTML = `<span class="correct">$<br>{displayAnswer} is correct.<br><br> Redirecting...</span>`;
+        responsePanel.innerHTML = `<br><span class="correct">${displayAnswer} is correct.<br><br> Redirecting...</span>`;
         redir = baseredir.concat(answer);
         window.location.href = redir;
     } else {
-        responsePanel.innerHTML = `<span class="incorrect">$<br>{displayAnswer} is incorrect.</span>`;
+        responsePanel.innerHTML = `<br><span class="incorrect">${displayAnswer} is incorrect.</span>`;
     }
 
 
