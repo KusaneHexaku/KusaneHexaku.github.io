@@ -58,7 +58,7 @@ window.addEventListener('load', updateFrameSize);
   let redir = ""
 
   answerForm.addEventListener('submit', (event) => {
-    const correctAnswerHash = '3d024b97564b4c33d5eb946cda2fc55441869a95b865b2d091c8e881b53c363e';
+    var correctAnswerHashList = ['3d024b97564b4c33d5eb946cda2fc55441869a95b865b2d091c8e881b53c363e','059bf8197c9887c19cc6d5d6fd3fa68a7cc85d230a0d71720572afbfaf77109a','1bf39038d5d0598e1dd06d05a8936bd37df45a5776b227d6016bd83ee1deb97a'];
 
     const answer = normalizePuzzleAnswer(answerInput.value);
     const displayAnswer = normalizePuzzleAnswerDisplay(answerInput.value);
@@ -68,7 +68,7 @@ window.addEventListener('load', updateFrameSize);
         responsePanel.classList.add('response');
         answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
       } 
-    if (answerHash === correctAnswerHash) {
+    if (correctAnswerHashList.indexOf(answerHash) !== -1) {
         responsePanel.innerHTML = `<br><span class="correct">${displayAnswer} is correct.<br><br> Redirecting...</span>`;
         redir = baseredir.concat(answer);
         window.location.href = redir;
