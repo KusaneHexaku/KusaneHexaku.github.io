@@ -1,7 +1,7 @@
 body {
   height: 100vh;
   margin: 0;
-  overflow: scroll;
+  overflow: hidden;
   padding: 2rem;
   color: white;
   font: 1.5rem Inconsolata, monospace;
