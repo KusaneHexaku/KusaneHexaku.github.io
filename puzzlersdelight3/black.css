@@ -1,6 +1,4 @@
 body {
-  background-image: url('MOSHED-2022-10-6-0-44-29-gif.gif');
-  background-size: cover;
   height: 100vh;
   margin: 0;
   overflow: scroll;
@@ -102,4 +100,12 @@ a:active {
   text-shadow: 0 0 5px #A8A8A8;
   background-color: #FFFFFF
     
+}
+
+#bgVid {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
 }
