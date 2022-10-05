@@ -9,7 +9,7 @@ body {
   overflow: scroll;
   padding: 2rem;
   color: white;
-  font: 2rem Inconsolata, monospace;
+  font: 1.5rem Inconsolata, monospace;
   font-stretch: ultra-expanded;
   text-shadow: 0 0 5px #C8C8C8;
   &::after {
