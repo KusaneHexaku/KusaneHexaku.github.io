@@ -4,48 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Cruncher - Adalbert Zollern's Christmas Mishap</title>
+    <title>Call in: Number Cruncher - Adalbert Zollern's Christmas Mishap</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link href="../bootstrap.css" rel="stylesheet" />
-    <script>
-      function changeTrack() {
-        if (typeof(Storage) !== "undefined") {
-          if (localStorage.getItem("ss2022Adalbert_numberCruncherTrack") === null) {
-            localStorage.setItem("ss2022Adalbert_numberCruncherTrack","A");
-          }
-          else if (localStorage.ss2022Adalbert_numberCruncherTrack == "B") {
-            localStorage.setItem("ss2022Adalbert_numberCruncherTrack","A");
-          } else {
-            localStorage.setItem("ss2022Adalbert_numberCruncherTrack","B");
-          }
-          printTrack();
-        } else {
-          document.getElementById("trackMessage").innerHTML = "Sorry, your browser does not support web storage...";
-        }
-      }
-
-      function printTrack() {
-        document.getElementById("trackMessage").innerHTML = "You are currently on Data Track " + localStorage.ss2022Adalbert_numberCruncherTrack + "!";
-        if (localStorage.getItem("ss2022Adalbert_numberCruncherTrack") != "B") {
-          localStorage.setItem("ss2022Adalbert_numberCruncherTrack","A");
-        } 
-        if (localStorage.getItem("ss2022Adalbert_numberCruncherTrackSwitchable") == "true") {
-          document.getElementById("trackSwitcher").style.display = 'block';
-        } else {
-          document.getElementById("trackSwitcher").style.display = 'none';
-          localStorage.setItem("ss2022Adalbert_numberCruncherTrack","A");
-        }
-        if (localStorage.ss2022Adalbert_numberCruncherTrack == "B") {
-            document.getElementById("flavourText").innerHTML = "Okay, so we did all of that just to get the password to access another level of security? I get that the control room is really important and needed to be really secure, but this would've been way easier if he had just written it out somewhere. Hopefully this time it really is the door password.";
-          } else {
-            document.getElementById("flavourText").innerHTML = "Santa Adalbert's forgotten the password to the control room. At least he did leave himself some form of a reminder, albeit in the form of this strange device. Is all these multiple security factors really worth the trouble?";
-          }
-      }
-
-      window.addEventListener("DOMContentLoaded", function(){
-        printTrack();
-        });
-      </script>
 </head>
 
 <body>
@@ -58,43 +19,30 @@
                         <a class="nav-link " href="../index.html ">Return to main page</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="../solve/numberCruncher.html ">Check your answer</a>
-                    </li>
-                    <!-- <li class="nav-item ">
-                        <a class="nav-link " href="../solution/numberCruncher.html ">View Solution</a>
-                    </li> -->      
-                  </ul>
-                </div>
-            </div>
-        </nav>  
+                        <a class="nav-link " href="../puzzles/numberCruncher.html ">Return to puzzle</a>
+                    </li>  
+    </div>
+</nav>  
 
     <div class="container ">
  <br><br><br>
 <div class="text-center">
-    <h1>Number Cruncher</h1>
-    <p class="lead text-primary " id="flavourText">Santa Adalbert's forgotten the password to the control room. At least he did leave himself some form of a reminder, albeit in the form of this strange device. Is all these multiple security factors really worth the trouble?</p>
+    <h1>Check your answer for Number Cruncher</h1>
     <br><hr />
 </div>
 <br><br><br>
 <div>
-  <p class="lead text-primary ">Beep Boop! Tell me a number between 0 and 999,999,999 inclusive, and I'll go fetch the result for that number for you!</p>    
-    <div>
-        <main id="main-content" class="answer">    
-                <form method="POST">
-                        <span><input type="text" class="form-control" name="answer" autocomplete="off" required placeholder="Enter input here"></span>
-              <!--<input type="submit" class="btn-light" value=">">-->
-                </form>
-        </main>
-    </div>
-    <br><br><br>
-    <div class="container" id="trackSwitcher" style="display:none">
-      <div class="text-center"><p><button class="btn btn-danger mx-auto d-block" onclick="changeTrack()" type="button">Switch Data Track</button></p></div>
-      <div class="text-center lead text-primary" id="trackMessage"></div>
-    </div>
-
-<script id="check_input">
-
-function updateFrameSize() {
+    <main id="main-content" class="answer">    
+            <form method="POST">
+                    <span><input type="text" class="form-control" name="answer" autocomplete="off" required placeholder="Enter your guess"></span>
+          <!--<input type="submit" class="btn-light" value=">">-->
+            </form>
+    </main>
+</div>
+    
+    <script id="check_answer">
+ 
+        function updateFrameSize() {
   if (frameElement) {
     frameElement.style.height = document.body.offsetHeight + 'px';
   }
@@ -102,121 +50,55 @@ function updateFrameSize() {
 updateFrameSize();
 window.addEventListener('load', updateFrameSize);
   
-  const answerForm = document.querySelector('.answer form');
-  if (answerForm) {
+    const answerForm = document.querySelector('.answer form');
+    if (answerForm) {
   
+  // Javascript version of the answer checker.
   const answerInput = answerForm.querySelector('input[name=answer]');
   let responsePanel;
 
   answerForm.addEventListener('submit', (event) => {
-    printTrack();
-    if (localStorage.ss2022Adalbert_numberCruncherTrack == "B") {
-      var checkList = ["B","X","Y","Z","D","E","A","B","C","C","D","E","F","D","E","G"]; 
-    } else {
-      var checkList = [21,14,12,15,3,11,2,19,9,4,5,20,18,1,3,11];
-    }
-    var outputState = [];
-    const answer = answerInput.value;
+    var correctAnswerHashList = ['6d230597a7218eab1dde79bf2032c612b3718f41187f2748b546fb1fe3914b3a'];
+    var progressAnswerHashList = ['c870261090c662ebc4dfc59317c4ca1fe6e838018f1d50945ad856a45459267a'];
 
-    convert(answer).then((answerText) => {
+    const answer = normalizePuzzleAnswer(answerInput.value);
+    const displayAnswer = normalizePuzzleAnswerDisplay(answerInput.value);
+    hashPuzzleAnswer(answer).then((answerHash) => {
     if (!responsePanel) {
         responsePanel = document.createElement('div');
         responsePanel.classList.add('response');
         answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
-      }
+      } 
+    if (correctAnswerHashList.indexOf(answerHash) !== -1) {
+        responsePanel.innerHTML = `<br><span class="h3 text-success">${displayAnswer} is correct!</span>`;
+    } else if (progressAnswerHashList.indexOf(answerHash) !== -1) {
+        responsePanel.innerHTML = `<br><span class="h3 text-info">You inputted ${displayAnswer} into the control room keypad, but the door is still locked. Perhaps this password isn't for this door? </span>`;
+    } else {
+        responsePanel.innerHTML = `<br><span class="h3 text-danger">${displayAnswer} is incorrect.</span>`;
+    }
 
-    if (Number.isInteger(+answer) && answer > -1 && +answer < 1000000000) {
 
-      if (localStorage.ss2022Adalbert_numberCruncherTrack == "B") {
-        var splitText = answerText.split('');
-        for (const i of checkList) {
-        if (splitText.indexOf(i) !== -1) {
-          outputState.push("&#129001;");
-        } else {
-          outputState.push("&#11035;");
-        }
-      }
-      } else {
-      for (const i of checkList) {
-        if (answer % i == 0) {
-          outputState.push("&#129001;");
-        } else {
-          outputState.push("&#11035;");
-        }
-      }
-      }
-      responsePanel.innerHTML = `<br><span class="h1 text-center">${answer} : ${outputState.join(' ')}</span>`;
-    } else { 
-      
-      hashText(normalizeText(answer)).then((answerHash) => {
-        if (answerHash == 'c870261090c662ebc4dfc59317c4ca1fe6e838018f1d50945ad856a45459267a') {
-          localStorage.setItem("ss2022Adalbert_numberCruncherTrackSwitchable","true");
-          responsePanel.innerHTML = `<br><span class="h3 text-success">Valid password, Data Track switching has been enabled!</span>`;
-          printTrack();
-        } else {
-          responsePanel.innerHTML = `<br><span class="h3 text-danger">Uh oh, I cannot find the result for "${answer}". Maybe it's an invalid input? Please try again!</span>`;
-        }
-        }
-      )
-      }
      updateFrameSize();
     });
     event.preventDefault();
   });
-  
-var o = ['', 'DGX', 'AGZ', 'ADE', 'EG', 'D', 'Y', 'DY', 'AD', 'DX'];
-var e = ['', '', 'ADXZ', 'AE', 'AEG', 'A', 'AY', 'ADXY', 'AD', 'ADX'];
-var ee = ['ADX', 'CDX', 'ACDZ', 'ADEX', 'ADEGX', 'ADX', 'ADXY', 'ADYX', 'ADX', 'ADX'];
 
-function convert_m(num) {
-  if (num >= 1000000) {
-    return convert_m(Math.floor(num / 1000000)) + "CGX" + convert_th(num % 1000000);
-  } else {
-    return convert_th(num);
-  }
-}
-
-function convert_th(num) {
-  if (num >= 1000) {
-    return convert_h(Math.floor(num / 1000)) + "ABGXY" + convert_h(num % 1000);
-  } else {
-    return convert_h(num);
-  }
-}
-
-function convert_h(num) {
-  if (num > 99) {
-    return o[Math.floor(num / 100)] + "DEX" + convert_t(num % 100);
-  } else {
-    return convert_t(num);
-  }
-}
-
-function convert_t(num) {
-  if (num < 10) return o[num];
-  else if (num >= 10 && num < 20) return ee[num - 10];
-  else {
-    return e[Math.floor(num / 10)] + "" + e[num % 10];
-  }
-}
-
-async function convert(num) {
-  if (num == 0) return "DEFG";
-  else return convert_m(num);
-}
-
-async function hashText(answer) {
+  async function hashPuzzleAnswer(answer) {
     const encodedAnswer = new TextEncoder().encode(answer);
     const hashBuffer = await crypto.subtle.digest('SHA-256', encodedAnswer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
-function normalizeText(answer) {
+  function normalizePuzzleAnswer(answer) {
     return answer.toUpperCase().replace(/[^A-Z0-9]/g, '')
   }
-
-}     
+  function normalizePuzzleAnswerDisplay(answer) {
+    return answer.toUpperCase().replace(/[^'" \-A-Z0-9]/g, '')
+  }
+  
+} 
+      
   </script>
 </div>
 </body>
