@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call in: Number Cruncher - Adalbert Zollern's Christmas Mishap</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="../bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <nav class="navbar-expand-lg navbar-dark bg-darkred">
+        <div class="container-fluid" bis_skin_checked="1">
+            <div class="navbar-nav" id="navbarColor01" bis_skin_checked="1">
+                <ul class="navbar-nav me-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../index.html ">Return to main page</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../puzzles/numberCruncher.html ">Return to puzzle</a>
+                    </li>  
+    </div>
+</nav>  
+
+    <div class="container ">
+ <br><br><br>
+<div class="text-center">
+    <h1>Check your answer for Number Cruncher</h1>
+    <br><hr />
+</div>
+<br><br><br>
+<div>
+    <main id="main-content" class="answer">    
+            <form method="POST">
+                    <span><input type="text" class="form-control" name="answer" autocomplete="off" required placeholder="Enter your guess"></span>
+          <!--<input type="submit" class="btn-light" value=">">-->
+            </form>
+    </main>
+</div>
+    
+    <script id="check_answer">
+ 
+        function updateFrameSize() {
+  if (frameElement) {
+    frameElement.style.height = document.body.offsetHeight + 'px';
+  }
+}
+updateFrameSize();
+window.addEventListener('load', updateFrameSize);
+  
+    const answerForm = document.querySelector('.answer form');
+    if (answerForm) {
+  
+  // Javascript version of the answer checker.
+  const answerInput = answerForm.querySelector('input[name=answer]');
+  let responsePanel;
+
+  answerForm.addEventListener('submit', (event) => {
+    var correctAnswerHashList = ['6d230597a7218eab1dde79bf2032c612b3718f41187f2748b546fb1fe3914b3a'];
+    var progressAnswerHashList = ['c870261090c662ebc4dfc59317c4ca1fe6e838018f1d50945ad856a45459267a'];
+
+    const answer = normalizePuzzleAnswer(answerInput.value);
+    const displayAnswer = normalizePuzzleAnswerDisplay(answerInput.value);
+    hashPuzzleAnswer(answer).then((answerHash) => {
+    if (!responsePanel) {
+        responsePanel = document.createElement('div');
+        responsePanel.classList.add('response');
+        answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
+      } 
+    if (correctAnswerHashList.indexOf(answerHash) !== -1) {
+        responsePanel.innerHTML = `<br><span class="h3 text-success">${displayAnswer} is correct!</span>`;
+    } else if (progressAnswerHashList.indexOf(answerHash) !== -1) {
+        responsePanel.innerHTML = `<br><span class="h3 text-info">You inputted ${displayAnswer} into the control room keypad, but the door is still locked. Perhaps this password isn't for this door? </span>`;
+    } else {
+        responsePanel.innerHTML = `<br><span class="h3 text-danger">${displayAnswer} is incorrect.</span>`;
+    }
+
+
+     updateFrameSize();
+    });
+    event.preventDefault();
+  });
+
+  async function hashPuzzleAnswer(answer) {
+    const encodedAnswer = new TextEncoder().encode(answer);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encodedAnswer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function normalizePuzzleAnswer(answer) {
+    return answer.toUpperCase().replace(/[^A-Z0-9]/g, '')
+  }
+  function normalizePuzzleAnswerDisplay(answer) {
+    return answer.toUpperCase().replace(/[^'" \-A-Z0-9]/g, '')
+  }
+  
+} 
+      
+  </script>
+</div>
+</body>
+<br><br><br>
+</html>
