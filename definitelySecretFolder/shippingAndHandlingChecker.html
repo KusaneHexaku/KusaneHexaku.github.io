@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call in: Shipping and Handling - Adalbert Zollern's Christmas Mishap</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="../bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <nav class="navbar-expand-lg navbar-dark bg-darkred">
+        <div class="container-fluid" bis_skin_checked="1">
+            <div class="navbar-nav" id="navbarColor01" bis_skin_checked="1">
+                <ul class="navbar-nav me-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../index.html ">Return to main page</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../puzzles/shippingAndHandling.html ">Return to puzzle</a>
+                    </li>  
+    </div>
+</nav>  
+
+    <div class="container ">
+ <br><br><br>
+<div class="text-center">
+    <h1>Check your answer for Shipping and Handling</h1>
+    <br><hr />
+</div>
+<br><br><br>
+<div>
+    <main id="main-content" class="answer">    
+            <form method="POST">
+                    <span><input type="text" class="form-control" name="answer" autocomplete="off" required placeholder="Enter your guess"></span>
+          <!--<input type="submit" class="btn-light" value=">">-->
+            </form>
+    </main>
+</div>
+    
+    <script id="check_answer">
+ 
+        function updateFrameSize() {
+  if (frameElement) {
+    frameElement.style.height = document.body.offsetHeight + 'px';
+  }
+}
+updateFrameSize();
+window.addEventListener('load', updateFrameSize);
+  
+    const answerForm = document.querySelector('.answer form');
+    if (answerForm) {
+  
+  // Javascript version of the answer checker.
+  const answerInput = answerForm.querySelector('input[name=answer]');
+  let responsePanel;
+
+  answerForm.addEventListener('submit', (event) => {
+    var correctAnswerHashList = ['93a683e53fee38527dd10cfe36c615bb13c40930ced6edac0f4654bcaccb5f3e'];
+    var progressAnswerHashList = [
+      'a56a3e64601562bbc948572f0847d3713abf7877106703ab4454d003a285450c',
+      '65e75ad4cf9bf8c17252c4c5921138439f0358c46413d3f31d6060388f7a7c11',
+      '06d8ecc2c6cf81aa46e503bd275853c62b913024843cfba6fe148458f45950b7',
+      '1a49596c25ee745ba0375fe04625663d18c6cf1db5b453619dc1a296d9491d3e',
+      '5d7b33446e089b444ac1fafb1f5f67c8d218e2c9d608b7490a1c1f54ce001e53',
+      '18457c07f718b1c18217a994288fea3c14a2352d21df109b9ddcc940951cc21c',
+      'e1603d2eeada6454921e6064f697fefebd55ff69d3b4a0294073cfa3795efb7b',
+      '95403571e170d56fa5b6aaf493c0b0f8362621ce3d4a5af752dd0efb44fee6fd',
+      '19f72350b7fbcc1f95aa8772d54d59864a283298f3a08b3c856419103b340e3d',
+      'a176e220096564f6594008013898dd3e36a37d02a6b00f12730ea8ec57cec75c',
+      '10b6256d3675c625398ebae3e75d1f76b4e6cca73713c7c77d1f39d5997f3bef'
+    ];
+
+    var progressAnswerResponseList = [
+      '<h4 class="alert-heading">HEY, BAD NEWS...</h4>Once solvers have input the first correct solution, they will be given the next <i>puzzle</i> which is centered around Beatles lyrics. However, a necessary step was to solve some subpuzzle hidden on the design of the T-shirt given as kickoff, which make reference to the next round of the hunt; a Tresure Chest that also contains exclusively physical items puzzles.',
+      '<h4 class="alert-heading">UH, OH...</h4>The next puzzle were supposed to be solved <i>by</i> the content of a box with a pink sticker that solvers had received earlier. Inside solvers will find four custom D20s, two of them having non-Arabic numerals, and the other two having pictures on them.',
+      '<h4 class="alert-heading">GREAT WORK! BUT SADLY...</h4>The next puzzle involves a physical book that were distributed to solvers by the Workshop HQ. The book resembles a children story book, except that each spread contains a hidden puzzle that uses common <i>hunt</i> mechanics to extract a subanswer.',
+      '<h4 class="alert-heading">OUCHIE!</h4> At this point, solvers were instructed to create a 1-3 minutes trailer for the hunt, and email it to Workshop HQ, which is of course a <i>year</i>ly tradition. Upon doing so, solvers recieves a plain white envelope containing nine transparent sheets with similar images of a 5x5 arrangement of squares printed on them.',
+      '<h4 class="alert-heading">OH, AWKWARD...</h4>Solvers receive a 3-page document containing a KenKen puzzle, and a word-placement logic puzzle with given sentence clues. After solving the puzzle normally and indexing into the word grid using the KenKen grid, solvers found out that every single clues in the document is lying, and thus must <i>then</i> re-solve both puzzles in a way that does not abide any of the given clues.',
+      '<h4 class="alert-heading">A DEAD END?</h4>Once the solution to the previous puzzle have been submitted, solvers are instructed to send members of their team to a location (actually just a dining hall) to play Blackjack. Solvers are also given a pre-arranged <i>index</i>ed deck of card, though this is not used at the Blackjack table. After playing Blackjack there for a while, solver may notice that a specific sequence of cards were being dealt repeatedly over and over.',
+      '<h4 class="alert-heading">HM...</h4>The next puzzle involves pictures of food items arranged in the shape of a number. The revelation is that each picture consists of ingredients of a Vosges chocolate bar (sans the chocolate). Indexing into the name of the bar with the number in the picture gives solvers an instruction to call Workshop HQ for some sweets. When they do, they are given a small piece of chocolate <i>with</i> the answer written on it. The chocolate are not available to be eaten online.',
+      '<h4 class="alert-heading">F</h4>Solvers are instructed to contact Cranium Command with a specific phrase to receive the puzzle, printed on a 9x18 piece of cardstock. The printed puzzle features a <i>header</i> displaying the puzzle name and flavour text, and a large formation of coloured squares.',
+      '<h4 class="alert-heading">HMMMMM...</h4>Once the answer has been submitted, solvers were instructed to contact Workshop HQ to receive the next puzzle, which came in the form of 18 baggies containing white powders, each with a name long with two initial <i>letters</i>, and a dollar amount written on them. Solvers had to identify what each of the white powders actually are as part of the puzzle.',
+      '<h4 class="alert-heading">OH, AWKWARD...</h4>This final puzzle was printed on a single sheet of form paper and distributed physically. Due to the main mechanic of the puzzle, a digital replica was unable to be ac<i>count</i>ed for and thus is not available to be solved.',
+      'After the final subpuzzle have been submitted, solvers are now able to take everything they found and solve for the actual answer to this puzzle.'
+    ];
+
+    const answer = normalizePuzzleAnswer(answerInput.value);
+    const displayAnswer = normalizePuzzleAnswerDisplay(answerInput.value);
+    hashPuzzleAnswer(answer).then((answerHash) => {
+    if (!responsePanel) {
+        responsePanel = document.createElement('div');
+        responsePanel.classList.add('response');
+        answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
+      } 
+    if (correctAnswerHashList.indexOf(answerHash) !== -1) {
+        responsePanel.innerHTML = `<br><span class="h3 text-success">${displayAnswer} is correct!</span>`;
+    } else if (progressAnswerHashList.indexOf(answerHash) !== -1) {
+        responsePanel.innerHTML = `<br><br><div class="h5 alert alert-warning" bis_skin_checked="1"><p class="mb-0">` + progressAnswerResponseList[progressAnswerHashList.indexOf(answerHash)] + `</p></div>`;
+    } else {
+        responsePanel.innerHTML = `<br><span class="h3 text-danger">${displayAnswer} is incorrect.</span>`;
+    }
+
+
+     updateFrameSize();
+    });
+    event.preventDefault();
+  });
+
+  async function hashPuzzleAnswer(answer) {
+    const encodedAnswer = new TextEncoder().encode(answer);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encodedAnswer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function normalizePuzzleAnswer(answer) {
+    return answer.toUpperCase().replace(/[^A-Z0-9]/g, '')
+  }
+  function normalizePuzzleAnswerDisplay(answer) {
+    return answer.toUpperCase().replace(/[^'" \-A-Z0-9]/g, '')
+  }
+  
+} 
+      
+  </script>
+</div>
+</body>
+<br><br><br>
+</html>
