@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Answer Check : Puzzle Title</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link href="../stylesheet.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <nav class="navbar-expand-lg navbar-dark bg-grey">
+        <div class="container-fluid" bis_skin_checked="1">
+            <div class="navbar-nav" id="navbarColor01" bis_skin_checked="1">
+                <ul class="navbar-nav me-auto ">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../index.html ">Return to main page</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="../puzzles/template.html ">Return to puzzle</a>
+                    </li>  
+    </div>
+</nav>  
+
+    <div class="container ">
+ <br><br><br>
+<div class="text-center bg-white jumbotron">
+    <h1>Template for answer checker page</h1>
+  <hr />
+</div>
+<div>
+    <main id="main-content" class="answer">    
+            <form method="POST">
+                    <span><input type="text" class="form-control" name="answer" autocomplete="off" required placeholder="Enter your guess"></span>
+          <!--<input type="submit" class="btn-light" value=">">-->
+            </form>
+    </main>
+</div>
+    
+    <script id="check_answer">
+ 
+        function updateFrameSize() {
+  if (frameElement) {
+    frameElement.style.height = document.body.offsetHeight + 'px';
+  }
+}
+updateFrameSize();
+window.addEventListener('load', updateFrameSize);
+  
+    const answerForm = document.querySelector('.answer form');
+    if (answerForm) {
+  
+  // Javascript version of the answer checker.
+  const answerInput = answerForm.querySelector('input[name=answer]');
+  let responsePanel;
+
+  answerForm.addEventListener('submit', (event) => {
+    var correctAnswerHashList = ['8a868e503de1d61f2e61b3cd282c890c3c50190fe2ae5e778f8c8b572a2ca671'];
+
+    const answer = normalizePuzzleAnswer(answerInput.value);
+    const displayAnswer = normalizePuzzleAnswerDisplay(answerInput.value);
+    hashPuzzleAnswer(answer).then((answerHash) => {
+    if (!responsePanel) {
+        responsePanel = document.createElement('div');
+        responsePanel.classList.add('response');
+        answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
+      } 
+    if (correctAnswerHashList.indexOf(answerHash) !== -1) {
+        responsePanel.innerHTML = `<br><span class="h3 text-success">${displayAnswer} is correct!</span>
+        <br><br>
+        <p class="lead text-primary "></p>
+        `;
+    } else {
+        responsePanel.innerHTML = `<br><span class="h3 text-danger">${displayAnswer} is incorrect.</span>`;
+    }
+
+
+     updateFrameSize();
+    });
+    event.preventDefault();
+  });
+
+  async function hashPuzzleAnswer(answer) {
+    const encodedAnswer = new TextEncoder().encode(answer);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encodedAnswer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function normalizePuzzleAnswer(answer) {
+    return answer.toUpperCase().replace(/[^A-Z0-9]/g, '')
+  }
+  function normalizePuzzleAnswerDisplay(answer) {
+    return answer.toUpperCase().replace(/[^'" \-A-Z0-9]/g, '')
+  }
+  
+} 
+      
+  </script>
+</div>
+</body>
+<br><br><br>
+</html>

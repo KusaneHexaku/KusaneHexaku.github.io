@@ -9,7 +9,7 @@
     <link href="../stylesheet.css" rel="stylesheet" />
 </head>
 
-<body>
+<body style="background-image: url(../img/bg-algeria.png); width: 100%; height: 100vh; background-repeat: no-repeat; background-size: cover;">
 
     <nav class="navbar-expand-lg navbar-dark bg-grey">
         <div class="container-fluid" bis_skin_checked="1">
@@ -26,11 +26,10 @@
 
     <div class="container ">
  <br><br><br>
-<div class="text-center">
+<div class="text-center bg-white jumbotron">
     <h1>Check your answer for Puzzle Feed</h1>
-    <br><hr />
+    <hr />
 </div>
-<br><br><br>
 <div>
     <main id="main-content" class="answer">    
             <form method="POST">
@@ -70,18 +69,18 @@ window.addEventListener('load', updateFrameSize);
         answerForm.parentNode.insertBefore(responsePanel, answerForm.nextSibling);
       } 
     if (correctAnswerHashList.indexOf(answerHash) !== -1) {
-        responsePanel.innerHTML = `<br><span class="h3 text-success">${displayAnswer} is correct!</span>
+        responsePanel.innerHTML = `<br><span class="h3 text-white bg-success">${displayAnswer} is correct!</span>
         <br><br>
-        <p class="lead text-primary "></p>
+        <p class="lead text-primary bg-white"></p>
         `;
     }
     else if (otherResponseHashList.indexOf(answerHash) !== -1) {
-        responsePanel.innerHTML = `<br><span class="h3 text-info">${displayAnswer} is close!</span>
+        responsePanel.innerHTML = `<br><span class="h3 text-white bg-info">${displayAnswer} is close!</span>
         <br><br>
-        <p class="lead text-info ">That is the word we were going for, but please step back and submit the phrase.</p>
+        <p class="lead text-white bg-info">That is the word we were going for, but please step back and submit the phrase.</p>
         `;
     } else {
-        responsePanel.innerHTML = `<br><span class="h3 text-danger">${displayAnswer} is incorrect.</span>`;
+        responsePanel.innerHTML = `<br><span class="h3 text-white bg-danger">${displayAnswer} is incorrect.</span>`;
     }
 
 
